@@ -59,7 +59,6 @@ test('Loco não pode ser adotado se for o único animal na lista', () => {
 
 test('Loco pode ser adotado com outro animal na lista', () => {
     const resultado = new AbrigoAnimais().encontraPessoas('SKATE,RATO', '', 'Loco,Rex');
-    
     expect(resultado.lista[0]).toBe('Loco - pessoa 1');
     expect(resultado.lista[1]).toBe('Rex - abrigo');
     expect(resultado.lista.length).toBe(2);

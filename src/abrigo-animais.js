@@ -16,11 +16,8 @@ class AbrigoAnimais {
     const brinquedosFav = animalParaAdotar.brinquedos;
 
   if (animalParaAdotar.tipo === 'jabuti') {
-    // A lista de animais para adoção tem mais de um item?
     const temCompanhia = ordemAnimais.length > 1;
-    // A pessoa tem os brinquedos do Loco?
     const temBrinquedos = brinquedosPessoa.includes('SKATE') && brinquedosPessoa.includes('RATO');
-    // A pessoa só pode adotar o Loco se TIVER companhia E os brinquedos
     return temCompanhia && temBrinquedos;
   }
 
@@ -30,7 +27,6 @@ class AbrigoAnimais {
         ponteiroBrinquedoAnimal++;
       }
     }
-
     return ponteiroBrinquedoAnimal === brinquedosFav.length;
   }
 
