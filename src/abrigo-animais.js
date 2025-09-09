@@ -24,15 +24,6 @@ class AbrigoAnimais {
       return temSkate && temRato;
     }
 
-    // Lógica para gatos (Regra 3)
-    if (animalParaAdotar.tipo === 'gato') {
-      for (const brinquedo of brinquedosPessoa) {
-        if (!brinquedosFav.includes(brinquedo)) {
-          return false;
-        }
-      }
-    }
-
     // Lógica para todos os animais, incluindo gatos, para a ordem dos brinquedos
     let ponteiroBrinquedoAnimal = 0;
     for (const brinquedoPessoa of brinquedosPessoa) {
