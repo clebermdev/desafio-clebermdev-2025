@@ -12,19 +12,18 @@ class AbrigoAnimais {
     };
   }
 
-  // Método auxiliar para verificar se uma pessoa pode adotar um animal,
-  // com base nas regras de brinquedos.
-  podeAdotar(brinquedosPessoa, animalParaAdotar, animaisNaLista) {
+  podeAdotar(brinquedosPessoa, animalParaAdotar, ordemAnimais) {
     const brinquedosFav = animalParaAdotar.brinquedos;
 
-    // Lógica para o jabuti Loco (Regra 6)
-    if (animalParaAdotar.tipo === 'jabuti' && animaisNaLista.length > 1) {
-      const temSkate = brinquedosPessoa.includes('SKATE');
-      const temRato = brinquedosPessoa.includes('RATO');
-      return temSkate && temRato;
-    }
+  if (animalParaAdotar.tipo === 'jabuti') {
+    // A lista de animais para adoção tem mais de um item?
+    const temCompanhia = ordemAnimais.length > 1;
+    // A pessoa tem os brinquedos do Loco?
+    const temBrinquedos = brinquedosPessoa.includes('SKATE') && brinquedosPessoa.includes('RATO');
+    // A pessoa só pode adotar o Loco se TIVER companhia E os brinquedos
+    return temCompanhia && temBrinquedos;
+  }
 
-    // Lógica para todos os animais, incluindo gatos, para a ordem dos brinquedos
     let ponteiroBrinquedoAnimal = 0;
     for (const brinquedoPessoa of brinquedosPessoa) {
       if (ponteiroBrinquedoAnimal < brinquedosFav.length && brinquedoPessoa === brinquedosFav[ponteiroBrinquedoAnimal]) {
@@ -35,9 +34,7 @@ class AbrigoAnimais {
     return ponteiroBrinquedoAnimal === brinquedosFav.length;
   }
 
-  // Método principal do desafio
   encontraPessoas(brinquedosPessoa1, brinquedosPessoa2, ordemAnimais) {
-    // Passo 2: Validação das entradas
     const animaisParaAdotar = ordemAnimais.split(',');
     const animaisUnicos = new Set();
     for (const nomeAnimal of animaisParaAdotar) {
@@ -54,7 +51,6 @@ class AbrigoAnimais {
       return { erro: 'Brinquedo inválido' };
     }
 
-    // Passo 4: Loop e determinação do destino de cada animal
     let adocoesPessoa1 = 0;
     let adocoesPessoa2 = 0;
     const listaResultados = [];
@@ -84,8 +80,8 @@ class AbrigoAnimais {
       }
     }
 
-    // Passo 5: Finalizar o retorno
     listaResultados.sort();
+    
     return { lista: listaResultados };
   }
 }
